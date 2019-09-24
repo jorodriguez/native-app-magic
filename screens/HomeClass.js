@@ -327,6 +327,25 @@ class ItemActividad extends React.Component {
       </Button>
   };
 
+  botones = (emociones)=>{
+
+    emociones.map(e => {
+    let json = JSON.parse(e);
+    <Button primary
+      onPress={this.handleOnPressLike}>
+      <AnimatedIcon
+        ref={this.handleSmallAnimatedIconRef}
+        type="FontAwesome"
+        name={json.seleccionada ? json.icono_active : json.icono}                  
+        size={100}
+        
+      />
+      <Text>{json}</Text>
+    </Button>
+    });
+
+  };
+
   render() {
     const { liked } = this.state;
     return (
@@ -380,11 +399,21 @@ class ItemActividad extends React.Component {
 
           <CardItem footer bordered>
             <Left>
-            <FlatList
-              data={this.lista}
-              renderItem={this._renderItem}
-              keyExtractor={(item, index) => index.toString()}
-            />
+            {              
+              this.props.item.emociones.map(e => 
+              <Button primary
+                onPress={this.handleOnPressLike}>                  
+                <AnimatedIcon
+                  ref={this.handleSmallAnimatedIconRef}
+                  type="FontAwesome"
+                  name={e.seleccionada ? e.icono_active : e.icono}                  
+                  size={100}
+                  
+                />
+                <Text>{e}</Text>
+              </Button>)
+              
+            }   
               {/*<Button transparent
                 onPress={this.handleOnPressLike}>
                 <AnimatedIcon
