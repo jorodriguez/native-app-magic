@@ -98,7 +98,7 @@ export default class HomeClass extends React.Component {
       .then(() => {
         this.getActividades();
       }).catch((e) => {
-        Alert.alert("Error", "Al cargar las actividades");
+        Alert.alert("Error", "Al cargar las actividades "+JSON.stringfy(e));
       });
   }
 
@@ -195,14 +195,7 @@ export default class HomeClass extends React.Component {
       <View style={styles.container}>
         <Loader
           loading={this.state.loading} />
-        {/*
-        <PopupRelogin tokenExpirado={this.state.tokenExpirado}
-          navigation={this.props.navigation}
-          closeAction={this._closeanRefreshPopupRelogin}
-          onlyClose={this._onlyClosePopupRelogin}
-       ></PopupRelogin>*/}
-
-        <ScrollView
+       <ScrollView
           style={styles.container}
           refreshControl={
             <RefreshControl
@@ -319,12 +312,25 @@ class ItemActividad extends React.Component {
   }
   // animaciones
 
+  
+  renderButtonEmociones = ({item,index})=>{
+    
+     <Button transparent
+                onPress={this.handleOnPressLike}>
+                <AnimatedIcon
+                  ref={this.handleSmallAnimatedIconRef}
+                  type="FontAwesome"
+                  name={liked ? 'heart' : 'heart-o'}                  
+                  size={100}
+                  style={ liked ? styles.iconCorazonMarcado :styles.iconCorazon}
+                />
+      </Button>
+  };
 
   render() {
     const { liked } = this.state;
     return (
       <View>
-
         <Card>
           <CardItem>
             <Left>
@@ -374,7 +380,12 @@ class ItemActividad extends React.Component {
 
           <CardItem footer bordered>
             <Left>
-              <Button transparent
+            <FlatList
+              data={this.lista}
+              renderItem={this._renderItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+              {/*<Button transparent
                 onPress={this.handleOnPressLike}>
                 <AnimatedIcon
                   ref={this.handleSmallAnimatedIconRef}
@@ -383,7 +394,7 @@ class ItemActividad extends React.Component {
                   size={100}
                   style={ liked ? styles.iconCorazonMarcado :styles.iconCorazon}
                 />
-              </Button>
+              </Button>*/}
             </Left>
             <Body>
             
