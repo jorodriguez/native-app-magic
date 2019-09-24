@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "119606004783",
+    "firebase_url": "https://magic-ff92f.firebaseio.com",
+    "project_id": "magic-ff92f",
+    "storage_bucket": "magic-ff92f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119606004783:android:fc07b3be36a20491",
+        "android_client_info": {
+          "package_name": "com.cliente.magic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "119606004783-pv3qh57u5s6eenju6ue3eor6403le1v6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP20YBzXqIwOc7q8pMXEVHS1x2yRVHru4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "119606004783-pv3qh57u5s6eenju6ue3eor6403le1v6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119606004783:android:1239c45b897f2d34",
+        "android_client_info": {
+          "package_name": "com.cliente.magic.magic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "119606004783-pv3qh57u5s6eenju6ue3eor6403le1v6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP20YBzXqIwOc7q8pMXEVHS1x2yRVHru4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "119606004783-pv3qh57u5s6eenju6ue3eor6403le1v6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119606004783:android:ceb8542c494cb743",
+        "android_client_info": {
+          "package_name": "com.magicintelligencecompany.magicintelligence"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "119606004783-pv3qh57u5s6eenju6ue3eor6403le1v6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP20YBzXqIwOc7q8pMXEVHS1x2yRVHru4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "119606004783-pv3qh57u5s6eenju6ue3eor6403le1v6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
