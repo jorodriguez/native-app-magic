@@ -98,7 +98,7 @@ export default class HomeClass extends React.Component {
       .then(() => {
         this.getActividades();
       }).catch((e) => {
-        Alert.alert("Error", "Al cargar las actividades "+JSON.stringfy(e));
+        Alert.alert("Error", "Al cargar las actividades " + JSON.stringfy(e));
       });
   }
 
@@ -195,7 +195,7 @@ export default class HomeClass extends React.Component {
       <View style={styles.container}>
         <Loader
           loading={this.state.loading} />
-       <ScrollView
+        <ScrollView
           style={styles.container}
           refreshControl={
             <RefreshControl
@@ -232,16 +232,12 @@ export default class HomeClass extends React.Component {
   }
 }
 
-const AnimatedIcon = Animatable.createAnimatableComponent(Icon);
-
 class ItemActividad extends React.Component {
   constructor() {
     super();
     this.state = {
       activar_animacion: false,
-      liked: false
     };
-    this.lastPress = 0
   }
 
   _onPress = () => {
@@ -260,94 +256,8 @@ class ItemActividad extends React.Component {
 
   }
 
-
-  //--animaciones
-  handleLargeAnimatedIconRef = (ref) => {
-    this.largeAnimatedIcon = ref
-  }
-
-  handleSmallAnimatedIconRef = (ref) => {
-    this.smallAnimatedIcon = ref
-  }
-
-  animateIcon = () => {
-    const { liked } = this.state
-    this.largeAnimatedIcon.stopAnimation()
-
-    if (liked) {
-      this.largeAnimatedIcon.bounceIn()
-        .then(() => this.largeAnimatedIcon.bounceOut())
-      this.smallAnimatedIcon.pulse(200)
-    } else {      
-      
-      this.largeAnimatedIcon.bounceIn()
-        .then(() => {
-          this.largeAnimatedIcon.bounceOut()
-          this.smallAnimatedIcon.bounceIn()
-        })
-        .then(() => {
-          if (!liked) {
-            //this.setState(prevState => ({ liked: !prevState.liked }))
-          }
-        });      
-    }
-  }
-
-  handleOnPress = () => {
-    const time = new Date().getTime()
-    const delta = time - this.lastPress
-    const doublePressDelay = 400
-
-    if (delta < doublePressDelay) {
-      this.animateIcon()
-    }
-    this.lastPress = time
-  }
-
-  handleOnPressLike = () => {
-    this.smallAnimatedIcon.bounceIn()
-    this.setState({ liked: !this.state.liked });
-    this.animateIcon();
-    //this.setState(prevState => ({ liked : !prevState.liked }))
-  }
-  // animaciones
-
-  
-  renderButtonEmociones = ({item,index})=>{
-    
-     <Button transparent
-                onPress={this.handleOnPressLike}>
-                <AnimatedIcon
-                  ref={this.handleSmallAnimatedIconRef}
-                  type="FontAwesome"
-                  name={liked ? 'heart' : 'heart-o'}                  
-                  size={100}
-                  style={ liked ? styles.iconCorazonMarcado :styles.iconCorazon}
-                />
-      </Button>
-  };
-
-  botones = (emociones)=>{
-
-    emociones.map(e => {
-    let json = JSON.parse(e);
-    <Button primary
-      onPress={this.handleOnPressLike}>
-      <AnimatedIcon
-        ref={this.handleSmallAnimatedIconRef}
-        type="FontAwesome"
-        name={json.seleccionada ? json.icono_active : json.icono}                  
-        size={100}
-        
-      />
-      <Text>{json}</Text>
-    </Button>
-    });
-
-  };
-
   render() {
-    const { liked } = this.state;
+
     return (
       <View>
         <Card>
@@ -374,20 +284,12 @@ class ItemActividad extends React.Component {
               </Right>
             </Left>
           </CardItem>
-          <CardItem bordered>      
+          <CardItem bordered>
             {
               (this.props.activar_animacion_confeti || this.state.activar_animacion) ?
                 <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} /> : null
             }
             <Body>
-            <AnimatedIcon
-              ref={this.handleLargeAnimatedIconRef}
-              name="heart"
-              color="#FF5733"              
-              style={styles.animatedIcon}
-              duration={800}
-              delay={300}
-            />
 
               <SimpleAnimation delay={1000} duration={1000} fade staticType='zoom' direction='up'>
                 <Text>
@@ -399,34 +301,23 @@ class ItemActividad extends React.Component {
 
           <CardItem footer bordered>
             <Left>
-            {              
-              this.props.item.emociones.map(e => 
-              <Button primary
-                onPress={this.handleOnPressLike}>                  
-                <AnimatedIcon
-                  ref={this.handleSmallAnimatedIconRef}
-                  type="FontAwesome"
-                  name={e.seleccionada ? e.icono_active : e.icono}                  
-                  size={100}
-                  
-                />
-                <Text>{e}</Text>
-              </Button>)
-              
-            }   
-              {/*<Button transparent
-                onPress={this.handleOnPressLike}>
-                <AnimatedIcon
-                  ref={this.handleSmallAnimatedIconRef}
-                  type="FontAwesome"
-                  name={liked ? 'heart' : 'heart-o'}                  
-                  size={100}
-                  style={ liked ? styles.iconCorazonMarcado :styles.iconCorazon}
-                />
-              </Button>*/}
+              {
+                this.props.item.emociones.map(elem => <BotonEmocion item={elem} ></BotonEmocion>)
+                /*this.props.item.emociones.map(item => {
+                  return <Button transparent
+                    onPress={this.handleOnPressLike}>
+                    <AnimatedIcon
+                      ref={this.handleSmallAnimatedIconRef}
+                      type="FontAwesome"
+                      name={item.seleccionada ? item.icono_active : item.icono}
+                      size={100}
+                    /><Text>{item.nombre}</Text>
+                  </Button>
+                })*/
+              }
             </Left>
             <Body>
-            
+
             </Body>
             <Right>
             </Right>
@@ -486,13 +377,94 @@ class ItemActividad extends React.Component {
     },
 
   });
+}
 
+const AnimatedIcon = Animatable.createAnimatableComponent(Icon);
+
+class BotonEmocion extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      liked: false
+    };
+    this.lastPress = 0
+  }
+
+  //--animaciones
+  handleLargeAnimatedIconRef = (ref) => {
+    this.largeAnimatedIcon = ref
+  }
+
+  handleSmallAnimatedIconRef = (ref) => {
+    this.smallAnimatedIcon = ref
+  }
+
+  animateIcon = () => {
+    const { liked } = this.state
+  //  this.largeAnimatedIcon.stopAnimation()
+
+    if (liked) {
+      /*this.largeAnimatedIcon.bounceIn()
+        .then(() => this.largeAnimatedIcon.bounceOut())
+        */
+      this.smallAnimatedIcon.pulse(200)
+    } else {
+
+      this.smallAnimatedIcon.bounceIn()
+      /*this.largeAnimatedIcon.bounceIn()
+        .then(() => {
+          this.largeAnimatedIcon.bounceOut()
+          this.smallAnimatedIcon.bounceIn()
+        })
+        .then(() => {
+          if (!liked) {
+            //this.setState(prevState => ({ liked: !prevState.liked }))
+          }
+        });*/
+    }
+  }
+
+  handleOnPress = () => {
+    const time = new Date().getTime()
+    const delta = time - this.lastPress
+    const doublePressDelay = 400
+
+    if (delta < doublePressDelay) {
+      this.animateIcon()
+    }
+    this.lastPress = time
+  }
+
+  handleOnPressEmocion = () => {
+    this.smallAnimatedIcon.bounceIn()
+    this.setState({ liked: !this.state.liked });
+    this.animateIcon();
+    //this.setState(prevState => ({ liked : !prevState.liked }))
+    //Pasar comoparametro el onPress y ejecutarlo aqui
+  //  Alert.alert("Emocion", "Me Emociona!!");
+  }
+
+  render() {
+    const { liked } = this.state;
+    return (
+      <Button transparent
+        onPress={this.handleOnPressEmocion}>
+        <AnimatedIcon
+          ref={this.handleSmallAnimatedIconRef}
+          type="FontAwesome"
+          name={this.props.item.seleccionada ? this.props.item.icono_active : this.props.item.icono}
+          size={100}
+          
+        /><Text>{this.props.item.nombre}</Text>
+      </Button>
+    );
+  }
 }
 
 
 HomeClass.navigationOptions = {
   header: null,
-  title: 'Joel',
+  title: 'Test',
 };
 
 
@@ -523,15 +495,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    color:"#F1948A",
-   
+    color: "#F1948A",
+
   },
   iconCorazonMarcado: {
     paddingHorizontal: 5,
     justifyContent: 'center',
-    alignItems:'center',
-    color:"#F1948A",
-   
+    alignItems: 'center',
+    color: "#F1948A",
   },
   animatedIcon: {
     position: 'absolute',
@@ -540,7 +511,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
     borderRadius: 160,
     opacity: 0,
-    color:"#E74C3C",
+    color: "#E74C3C",
     //width: '100%',
     //height: '100%',
   },
