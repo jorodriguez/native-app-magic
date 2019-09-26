@@ -7,7 +7,8 @@ const URL = {
     CAMBIO_CLAVE :BASE+'/auth_cliente/',
     ACTIVIDADES : BASE+'/actividades/',
     CLIENTE: BASE+'/cliente/',
-    BALANCE : BASE+'/balance_familiar_alumno/' 
+    BALANCE : BASE+'/balance_familiar_alumno/',
+    EMOCION : BASE+'/emocion'
 }
 
 

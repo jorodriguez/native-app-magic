@@ -11,7 +11,7 @@ import {
   Component,
   TouchableOpacity,
   Alert,
-  AsyncStorage
+  AsyncStorage,Icon
 } from 'react-native';
 
 
@@ -27,8 +27,10 @@ import Modal from "react-native-modal";
 import Loader from './Loader';
 import PopupCambioPassword from './PopupCambioPassword';
 import PopupRelogin from './PopupRelogin';
-import { cambiarClave } from '../servicios/UsuarioService';
+import { modificarDatos } from '../servicios/UsuarioService';
 import { anunciarSesionCaducada } from '../servicios/AlertSesionTerminada';
+
+import { cerrarSesion } from '../servicios/LoginService';
 
 export default class CuentaFamiliar extends React.Component {
   constructor(props) {
@@ -48,7 +50,8 @@ export default class CuentaFamiliar extends React.Component {
       correo: "",
       celular: "",
       religion: "",
-      cambio_password: false
+      cambio_password: false,
+      relogin :false
       
     }
     this.setDate = this.setDate.bind(this);
@@ -85,6 +88,10 @@ export default class CuentaFamiliar extends React.Component {
     if (this.state.usuarioSesion.celular != this.state.celular) {
       return true;
     }
+    if (this.state.usuarioSesion.correo != this.state.correo) {
+      this.setState({relogin : true});
+      return true;
+    }
 
     if (this.state.usuarioSesion.fecha_nacimiento != this.state.fecha_nacimiento) {
       return true;
@@ -105,6 +112,7 @@ export default class CuentaFamiliar extends React.Component {
 
   _onRefresh = () => {
     //this.setState({ refreshing: true });
+    this.iniciarDatosUsuario();
   }
 
   validarForma = () => {
@@ -140,14 +148,25 @@ export default class CuentaFamiliar extends React.Component {
     if (this.existenModificaciones()) {
       if (this.validarForma) {
         this.setState({ loading: true });      
-        cambiarClave(this.state.usuarioSesion.id, this.state.token)
+        modificarDatos(this.state.usuarioSesion.id, this.state.token,{
+          nombre: this.state.nombre,          
+          celular: this.state.celular,
+          fecha_nacimiento: this.state.fecha_nacimiento,
+          religion: this.state.religion,
+          correo: this.state.correo
+        })
         .then(res => res.json())
         .then(res => {
-          this.handleResponse(res, () => {
-            this.listaBalances = res.respuesta == null ? [] : res.respuesta;
+          this.handleResponse(res, () => {            
             if (this.listaBalances.length > 0) {
               this.setState({ loading: false });
               this.setState({ refreshing: false });
+              if(this.state.relogin){
+                //cerrarSesion(this.state.usuarioSesion.id,this.state.token);
+                this.pedirNuevoLogin();
+              }else{
+                Alert.alert("Información ", "Se modificaron los datos.");
+              }
             }
           });
         });
@@ -210,6 +229,21 @@ export default class CuentaFamiliar extends React.Component {
     this.state.tokenExpirado = false;
   };
 
+  pedirNuevoLogin(){
+    Alert.alert("Modificación ", "Se requiere volver a iniciar sesión.",
+    [
+        {
+            text: 'OK', onPress: () => {                
+              this.salir();
+            }
+        },
+    ]);    
+  }
+
+  salir = ()=>{
+    cerrarSesion(this.state.usuarioSesion.id,this.state.token);
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -233,23 +267,14 @@ export default class CuentaFamiliar extends React.Component {
           <View>
             <Content style={styles.container}>             
               <Form>
-                <Item padder>
+                <Item stackedLabel>
                   <Label>Nombre</Label>
-                  <Input
-                    placeholder="Nombre"
+                  <Input                    
                     underlineColorAndroid='transparent'
                     value={this.state.usuarioSesion != null ? this.state.nombre : ''}
                     onChangeText={(nombre) => this.setState({ nombre })} />
-                </Item>
-                {/*<Item padder>
-                  <Label>Teléfono</Label>
-                  <Input
-                    placeholder="Teléfono"
-                    underlineColorAndroid='transparent'
-                    value={this.state.usuarioSesion != null ? this.state.telefono : ''}
-                    onChangeText={(telefono) => this.setState({ telefono })} />
-                </Item>*/}
-                <Item padder>
+                </Item>              
+                <Item stackedLabel>
                   <Label>Fecha Nac.</Label>
                   <DatePicker
                     defaultDate={this.state.usuarioSesion != null ? this.state.fecha_nacimiento : new Date()}
@@ -269,35 +294,34 @@ export default class CuentaFamiliar extends React.Component {
                   />
 
                 </Item>
-                <Item padder>
+                <Item stackedLabel>
                   <Label>Correo</Label>
-                  <Input
-                    placeholder="Correo"
+                  <Input   
+                    keyboardType="email-address"                                        
                     underlineColorAndroid='transparent'
                     value={this.state.usuarioSesion != null ? this.state.correo : ''}
                     onChangeText={(correo) => this.setState({ correo })} />
-
+                    
                 </Item>
-                <Item padder>
+                <Item stackedLabel>
                   <Label>Celular</Label>
-                  <Input
-                    placeholder="Celular"
+                  <Input   
+                    keyboardType="numeric"                                                       
                     underlineColorAndroid='transparent'
                     value={this.state.usuarioSesion != null ? this.state.celular : ''}
                     onChangeText={(celular) => this.setState({ celular })} />
                 </Item>
-                <Item padder>
+                <Item stackedLabel>
                   <Label>Religión</Label>
-                  <Input
-                    placeholder="Religión"
+                  <Input                    
                     underlineColorAndroid='transparent'
                     value={this.state.usuarioSesion != null ? this.state.religion : ''}
                     onChangeText={(religion) => this.setState({ religion })} />
                 </Item>
 
-                <PopupCambioPassword _salir={this.props._salir} ></PopupCambioPassword>
+                <PopupCambioPassword _salir={this.salir} ></PopupCambioPassword>
 
-                <Item padder>
+                <Item stackedLabel>
                 </Item>
 
                 <Button block rounded info onPress={this.modificarDatos}><Text>Guardar</Text></Button>

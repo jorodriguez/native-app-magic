@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Image, AsyncStorage, Alert, Modal, ActivityIndicator } from "react-native";
+import { View, StyleSheet, Image, AsyncStorage, Alert, Modal, ActivityIndicator, ScrollView, TouchableOpacity } from "react-native";
 import {
     Container, Left, Card, CardItem, Footer, Thumbnail,
     Header, Item, Label,
     Input, Content, Button,
-    Text, Body, Toast, Title, Right, Icon
+    Text, Body, Toast, Title, Right, Icon    
 } from "native-base";
 
 //import Modal from "react-native-modal";
@@ -24,7 +24,7 @@ export default class ModalCambioClave extends React.Component {
             password: "",
             password_nuevo: "",
             password_confirm: "",
-            loading:false
+            loading: false
 
         };
     }
@@ -110,13 +110,73 @@ export default class ModalCambioClave extends React.Component {
 
     render() {
         return (
-            <Item onPress={this.toggleModal} padder>
+            <Item onPress={this.toggleModal}>
                 <Label style={styles.textoCambioContrasena}>Cambiar contraseña</Label>
                 <Input
                     style={styles.textoCambioContrasena}
                     value={'*****'}
                     disabled={true}
                 />
+                <Modal
+                    animationType={'fade'}
+                    transparent={true}
+                    onRequestClose={() => { console.log('close modal') }}
+                    visible={this.state.isModalVisible}>
+
+                    <View style={styles.popupOverlay}>
+                        <View style={styles.popup}>
+                            <View style={styles.popupContent}>
+                                <ScrollView contentContainerStyle={styles.modalInfo}>
+                                <Thumbnail source={require('../assets/images/padre_avatar.png')} />
+                                    <Text style={styles.name}>{this.state.nombre}</Text>
+                                    <Text style={styles.position}>{this.state.correo}</Text>
+                                    <Item floatingLabel>
+                                        <Label>Contraseña actual</Label>
+                                        <Input                                            
+                                            secureTextEntry={true}
+                                            underlineColorAndroid='transparent'
+                                            value={this.state.usuarioSesion != null ? this.state.password : ''}
+                                            onChangeText={(password) => this.setState({ password })} />
+                                    </Item>
+                                    <Item floatingLabel>
+                                        <Label>Nueva Contraseña</Label>
+                                        <Input                                                                                      
+                                            secureTextEntry={true}
+                                            underlineColorAndroid='transparent'
+                                            value={this.state.usuarioSesion != null ? this.state.password_nuevo : ''}
+                                            onChangeText={(password_nuevo) => this.setState({ password_nuevo })} />
+                                    </Item>
+                                    <Item floatingLabel>
+                                        <Label>Confirmar nueva contraseña</Label>
+                                        <Input
+                                            secureTextEntry={true}
+                                            underlineColorAndroid='transparent'
+                                            value={this.state.usuarioSesion != null ? this.state.password_confirm : ''}
+                                            onChangeText={(password_confirm) => this.setState({ password_confirm })} />
+                                    </Item>
+
+                                </ScrollView>
+                            </View>
+                            <View style={styles.popupButtons}>                              
+                            <Button block light onPress={this.toggleModal}>
+                                    <Text>Cancelar</Text>
+                                </Button>
+                                <Button info block onPress={this.confirmarCambioContrasena}>                                    
+                                    <Text>Confirmar</Text>
+                                    <ActivityIndicator
+                                        animating={this.state.loading} />
+                                </Button>
+                               {/*<TouchableOpacity onPress={this.toggleModal} style={styles.btnClose}>
+                                    <Text style={styles.txtClose}>Cerrar</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={this.confirmarCambioContrasena} style={styles.btnClose}>
+                                    <Text >Confirmar</Text>
+        </TouchableOpacity>*/}
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+                {/*
                 <Modal
                     transparent={true}
                     animationType={'slide'}
@@ -159,67 +219,21 @@ export default class ModalCambioClave extends React.Component {
                                         onChangeText={(password_confirm) => this.setState({ password_confirm })} />
                                 </Item>
                             </Body>
-                            <Footer >
-                                <Button info block onPress={this.confirmarCambioContrasena}>
-                                    {/*<Icon name='beer' />*/}
+                            <Footer >                               
+                                <Button block light onPress={this.toggleModal}>
+                                    <Text>Cancelar</Text>
+                                </Button>
+                                <Button info block onPress={this.confirmarCambioContrasena}>                                    
                                     <Text>Confirmar</Text>
                                     <ActivityIndicator
                                         animating={this.state.loading} />
-                                </Button>
-                                <Button block light onPress={this.toggleModal}>
-                                    <Text>Cancelar</Text>
                                 </Button>
                             </Footer>
                         </Card>
                     </View>
                 </Modal>
+                */}
 
-                {/*<Modal isVisible={this.state.isModalVisible} propagateSwipe>
-                    <Card style={{ backgroundColor: "#fff", alignContent: "center" }}>
-                        <Header>
-                            <Left style={{ flex: 1 }}>
-
-                            </Left>
-                            <Body tyle={{ flex: 3, justifyContent: 'center' }}>
-                                <Thumbnail source={require('../assets/images/padre_avatar.png')} />
-                                <Text style={styles.textoNombre} >{this.state.nombre}</Text>                                
-                            </Body>
-                            <Right style={{ flex: 1 }}></Right>
-                        </Header>
-                        <Item floatingLabel>
-                            <Label>Contraseña</Label>
-                            <Input
-                                secureTextEntry={true}
-                                underlineColorAndroid='transparent'
-                                value={this.state.usuarioSesion != null ? this.state.password : ''}
-                                onChangeText={(password) => this.setState({ password })} />
-                        </Item>
-                        <Item floatingLabel>
-                            <Label>Nueva Contraseña</Label>
-                            <Input
-                                secureTextEntry={true}
-                                underlineColorAndroid='transparent'
-                                value={this.state.usuarioSesion != null ? this.state.password_nuevo : ''}
-                                onChangeText={(password_nuevo) => this.setState({ password_nuevo })} />
-                        </Item>
-                        <Item floatingLabel>
-                            <Label>Confirmar </Label>
-                            <Input
-                                secureTextEntry={true}
-                                underlineColorAndroid='transparent'
-                                value={this.state.usuarioSesion != null ? this.state.password_confirm : ''}
-                                onChangeText={(password_confirm) => this.setState({ password_confirm })} />
-                        </Item>
-                        <Footer info>
-                            <Button transparent block onPress={this.toggleModal}>
-                                <Text>Cancelar</Text>
-                            </Button>
-                            <Button info block onPress={this.confirmarCambioContrasena}>
-                                <Text>Confirmar</Text>
-                            </Button>
-                        </Footer>
-                    </Card>
-        </Modal>*/}
             </Item>
         );
     }
@@ -255,7 +269,47 @@ const styles = StyleSheet.create({
     textoInfoCorreo: {
         color: '#928C9B',
         fontSize: 10
-    }
+    },
 
+    /************ modals ************/
+    popup: {
+        backgroundColor: 'white',
+        marginTop: 80,
+        marginHorizontal: 20,
+        borderRadius: 7,
+    },
+    popupOverlay: {
+        backgroundColor: "#00000057",
+        flex: 1,
+        marginTop: 0
+    },
+    popupContent: {
+        //alignItems: 'center',
+        margin: 5,
+        height: 250,
+    },
+    popupHeader: {
+        marginBottom: 45
+    },
+    popupButtons: {
+        marginTop: 15,
+        flexDirection: 'row',
+        borderTopWidth: 1,
+        borderColor: "#eee",
+        justifyContent: 'center'
+    },
+    popupButton: {
+        flex: 1,
+        marginVertical: 16
+    },
+    btnClose: {
+        height: 20,
+        backgroundColor: '#20b2aa',
+        padding: 20
+    },
+    modalInfo: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 
 });

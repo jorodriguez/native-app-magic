@@ -17,7 +17,9 @@ import {
   Span,
   RefreshControl,
   AsyncStorage,
-  Component, Alert
+  Component, 
+  Alert,
+  ActivityIndicator
 } from 'react-native';
 
 import { Container, Header, Content, Card, CardItem, Text, Left, Icon, Thumbnail, Right, Button, Body } from "native-base";
@@ -32,7 +34,7 @@ import Loader from './Loader';
 
 import PopupRelogin from './PopupRelogin';
 
-import { getActividades } from '../servicios/ActividadService';
+import { getActividades, tocarEmocion } from '../servicios/ActividadService';
 
 import { anunciarSesionCaducada } from '../servicios/AlertSesionTerminada';
 
@@ -85,12 +87,6 @@ export default class HomeClass extends React.Component {
         })
       }
     });
-    const ref = firebase.storage().ref('default/little-girl.png');;
-    ref.getDownloadURL()
-      .then((url) => {
-        this.setState({ image: url, ref: ref });
-        Alert.alert("", "" + JSON.stringify(ref));
-      });
   }
 
   iniciarListaActividades = () => {
@@ -261,6 +257,7 @@ class ItemActividad extends React.Component {
     return (
       <View>
         <Card>
+         
           <CardItem>
             <Left>
               <Icon name={this.props.item.icono}
@@ -301,19 +298,9 @@ class ItemActividad extends React.Component {
 
           <CardItem footer bordered>
             <Left>
-              {
-                this.props.item.emociones.map(elem => <BotonEmocion item={elem} ></BotonEmocion>)
-                /*this.props.item.emociones.map(item => {
-                  return <Button transparent
-                    onPress={this.handleOnPressLike}>
-                    <AnimatedIcon
-                      ref={this.handleSmallAnimatedIconRef}
-                      type="FontAwesome"
-                      name={item.seleccionada ? item.icono_active : item.icono}
-                      size={100}
-                    /><Text>{item.nombre}</Text>
-                  </Button>
-                })*/
+              { this.props.item.emociones ?
+                this.props.item.emociones.map(elem => <BotonEmocion  item={elem} ></BotonEmocion>)
+                : null
               }
             </Left>
             <Body>
@@ -382,13 +369,49 @@ class ItemActividad extends React.Component {
 const AnimatedIcon = Animatable.createAnimatableComponent(Icon);
 
 class BotonEmocion extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      liked: false
-    };
-    this.lastPress = 0
+      tocada:false,
+      id_emocion_actividad : null,
+      icono : '',      
+      loading:false,
+      token: null,
+      usuarioSesion: null,
+      tokenExpirado:false
+    };        
+    this.lastPress = 0;            
   }
+  //Fixme :buscar mejor implementacion para no repetir
+  _recogerUsuarioSesion = async () => {
+    const user = await AsyncStorage.getItem('usuario');
+    const token = await AsyncStorage.getItem('userToken');
+    this.setState({ token: token });
+    this.setState({ usuarioSesion: JSON.parse(user) });
+  };
+
+   handleResponse(response, handlerProcess) {
+    if (!response.estatus) {
+      this.setState({ tokenExpirado: response.tokenExpirado });
+      if (response.tokenExpirado) {
+        //anunciarSesionCaducada(this.iniciarListaActividades);
+        Alert.alert("Sesión Expirada", "Vuelva al login e inicie sesion nuevamente.");
+      } else {
+        Alert.alert("Operación Fallida", "Sucedió un detalle al procesar la operación. ");
+      }
+    } else {
+      handlerProcess();
+    }    
+  }
+
+  componentDidMount() {
+    this.setState({ 
+      tocada: this.props.item.seleccionada,
+      id_emocion_actividad : this.props.item.id_emocion_actividad      
+    });        
+    //Alert.alert("mount",JSON.stringify(this.state));
+  }
+
 
   //--animaciones
   handleLargeAnimatedIconRef = (ref) => {
@@ -400,27 +423,26 @@ class BotonEmocion extends React.Component {
   }
 
   animateIcon = () => {
-    const { liked } = this.state
-  //  this.largeAnimatedIcon.stopAnimation()
+    const { tocada } = this.state
+      //this.largeAnimatedIcon.stopAnimation()
 
-    if (liked) {
+    if (tocada) {
       /*this.largeAnimatedIcon.bounceIn()
         .then(() => this.largeAnimatedIcon.bounceOut())
-        */
-      this.smallAnimatedIcon.pulse(200)
+      */
+      this.smallAnimatedIcon.pulse(500)
     } else {
-
-      this.smallAnimatedIcon.bounceIn()
+      this.smallAnimatedIcon.bounceIn();
       /*this.largeAnimatedIcon.bounceIn()
         .then(() => {
           this.largeAnimatedIcon.bounceOut()
           this.smallAnimatedIcon.bounceIn()
-        })
-        .then(() => {
-          if (!liked) {
+        })*/
+      //.then(() => {
+         // if (!liked) {
             //this.setState(prevState => ({ liked: !prevState.liked }))
-          }
-        });*/
+          //}
+        //});
     }
   }
 
@@ -437,25 +459,54 @@ class BotonEmocion extends React.Component {
 
   handleOnPressEmocion = () => {
     this.smallAnimatedIcon.bounceIn()
-    this.setState({ liked: !this.state.liked });
-    this.animateIcon();
-    //this.setState(prevState => ({ liked : !prevState.liked }))
-    //Pasar comoparametro el onPress y ejecutarlo aqui
-  //  Alert.alert("Emocion", "Me Emociona!!");
+    this.setState({ loading: true });
+
+    this.setState({ tocada: !this.state.tocada }, () => {         
+      let body = { ...this.props.item };      
+      this._recogerUsuarioSesion()
+        .then(() => {
+          body.seleccionada = this.state.tocada;               
+          body.id_familiar = this.state.usuarioSesion.id;
+          body.id_emocion_actividad = this.state.id_emocion_actividad;
+          
+          tocarEmocion(body, this.state.token)
+            .then(res => res.json())
+            .then((res) => {
+              let that = this;              
+              this.handleResponse(res, () => {                  
+                if(res.respuesta.id > 0){                  
+                  that.setState({id_emocion_actividad:res.respuesta.id});                  
+                  //Alert.alert("Info ", "todo Ok ");    
+                  this.animateIcon();
+                  this.setState({ loading: false });                                
+                }else{
+                  this.setState({ loading: false,tocada : !this.state.tocada });
+                  Alert.alert("Error ", "Ocurrió un error ");                                    
+                }                                            
+              });
+            });
+        }).catch((e) => {
+          this.setState({ loading: false,tocada : !this.state.tocada });
+          Alert.alert("Error", "Al cargar las actividades " + JSON.stringfy(e));
+        });
+    });
   }
 
   render() {
-    const { liked } = this.state;
+    //const { tocada } = this.props.item.seleccionada;
+  
     return (
       <Button transparent
         onPress={this.handleOnPressEmocion}>
         <AnimatedIcon
           ref={this.handleSmallAnimatedIconRef}
           type="FontAwesome"
-          name={this.props.item.seleccionada ? this.props.item.icono_active : this.props.item.icono}
+          name={(this.state.tocada) ? this.props.item.icono_active : this.props.item.icono}
           size={100}
-          
-        /><Text>{this.props.item.nombre}</Text>
+          style={(this.state.tocada) ? this.props.item.estilo_active : this.props.item.estilo}          
+        />
+         <ActivityIndicator size="small" color="#EC6050" animating={this.state.loading} />               
+        <Text>{this.props.item.nombre} </Text>         
       </Button>
     );
   }
@@ -495,8 +546,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    color: "#F1948A",
-
+    color: "#F1948A"
   },
   iconCorazonMarcado: {
     paddingHorizontal: 5,
