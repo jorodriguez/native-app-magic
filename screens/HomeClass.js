@@ -241,8 +241,7 @@ class ItemActividad extends React.Component {
   };
 
   _activarAnimacion = () => {
-    this.setState({ activar_animacion: false });
-    Alert.alert("Anim", "ok");
+    this.setState({ activar_animacion: false });    
     setTimeout(() => {
       this.setState({ shoot: true });
     }, 500);
@@ -424,25 +423,11 @@ class BotonEmocion extends React.Component {
 
   animateIcon = () => {
     const { tocada } = this.state
-      //this.largeAnimatedIcon.stopAnimation()
-
-    if (tocada) {
-      /*this.largeAnimatedIcon.bounceIn()
-        .then(() => this.largeAnimatedIcon.bounceOut())
-      */
+    if (tocada) {      
       this.smallAnimatedIcon.pulse(500)
     } else {
       this.smallAnimatedIcon.bounceIn();
-      /*this.largeAnimatedIcon.bounceIn()
-        .then(() => {
-          this.largeAnimatedIcon.bounceOut()
-          this.smallAnimatedIcon.bounceIn()
-        })*/
-      //.then(() => {
-         // if (!liked) {
-            //this.setState(prevState => ({ liked: !prevState.liked }))
-          //}
-        //});
+     
     }
   }
 
