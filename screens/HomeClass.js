@@ -2,7 +2,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import moment from "moment";
 import React from 'react';
-
+import Carousel from 'react-native-banner-carousel';
 import * as Animatable from 'react-native-animatable'
 
 import {
@@ -17,7 +17,7 @@ import {
   Span,
   RefreshControl,
   AsyncStorage,
-  Component, 
+  Component,
   Alert,
   ActivityIndicator
 } from 'react-native';
@@ -228,6 +228,35 @@ export default class HomeClass extends React.Component {
   }
 }
 
+const images = [
+  "https://image.shutterstock.com/image-vector/casheless-paymentcashback-imege-handvector-illustration-600w-1515305807.jpg",
+  "https://image.shutterstock.com/image-vector/countryside-creator-theme-imega-set-600w-1089540569.jpg",
+  "https://image.shutterstock.com/image-illustration/woodworking-industry-infographics-set-lumberjack-600w-325082663.jpg"
+];
+function Banner() {
+  return (
+    <View style={styles.container}>
+      <Carousel
+        autoplay
+        autoplayTimeout={5000}
+        loop
+        index={0}
+        pageSize={BannerWidth}
+      >
+        {images.map((image, index) => this.renderPage(image, index))}
+      </Carousel>
+    </View>
+  );
+}
+
+function renderPage(image, index) {
+  return (
+    <View key={index}>
+      <Image style={{ width: BannerWidth, height: BannerHeight }} source={{ uri: image }} />
+    </View>
+  );
+}
+
 class ItemActividad extends React.Component {
   constructor() {
     super();
@@ -241,7 +270,7 @@ class ItemActividad extends React.Component {
   };
 
   _activarAnimacion = () => {
-    this.setState({ activar_animacion: false });    
+    this.setState({ activar_animacion: false });
     setTimeout(() => {
       this.setState({ shoot: true });
     }, 500);
@@ -256,7 +285,7 @@ class ItemActividad extends React.Component {
     return (
       <View>
         <Card>
-         
+
           <CardItem>
             <Left>
               <Icon name={this.props.item.icono}
@@ -297,8 +326,8 @@ class ItemActividad extends React.Component {
 
           <CardItem footer bordered>
             <Left>
-              { this.props.item.emociones ?
-                this.props.item.emociones.map(elem => <BotonEmocion  item={elem} ></BotonEmocion>)
+              {this.props.item.emociones ?
+                this.props.item.emociones.map(elem => <BotonEmocion item={elem} ></BotonEmocion>)
                 : null
               }
             </Left>
@@ -371,15 +400,15 @@ class BotonEmocion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tocada:false,
-      id_emocion_actividad : null,
-      icono : '',      
-      loading:false,
+      tocada: false,
+      id_emocion_actividad: null,
+      icono: '',
+      loading: false,
       token: null,
       usuarioSesion: null,
-      tokenExpirado:false
-    };        
-    this.lastPress = 0;            
+      tokenExpirado: false
+    };
+    this.lastPress = 0;
   }
   //Fixme :buscar mejor implementacion para no repetir
   _recogerUsuarioSesion = async () => {
@@ -389,7 +418,7 @@ class BotonEmocion extends React.Component {
     this.setState({ usuarioSesion: JSON.parse(user) });
   };
 
-   handleResponse(response, handlerProcess) {
+  handleResponse(response, handlerProcess) {
     if (!response.estatus) {
       this.setState({ tokenExpirado: response.tokenExpirado });
       if (response.tokenExpirado) {
@@ -400,14 +429,14 @@ class BotonEmocion extends React.Component {
       }
     } else {
       handlerProcess();
-    }    
+    }
   }
 
   componentDidMount() {
-    this.setState({ 
+    this.setState({
       tocada: this.props.item.seleccionada,
-      id_emocion_actividad : this.props.item.id_emocion_actividad      
-    });        
+      id_emocion_actividad: this.props.item.id_emocion_actividad
+    });
     //Alert.alert("mount",JSON.stringify(this.state));
   }
 
@@ -423,11 +452,11 @@ class BotonEmocion extends React.Component {
 
   animateIcon = () => {
     const { tocada } = this.state
-    if (tocada) {      
+    if (tocada) {
       this.smallAnimatedIcon.pulse(500)
     } else {
       this.smallAnimatedIcon.bounceIn();
-     
+
     }
   }
 
@@ -446,32 +475,32 @@ class BotonEmocion extends React.Component {
     this.smallAnimatedIcon.bounceIn()
     this.setState({ loading: true });
 
-    this.setState({ tocada: !this.state.tocada }, () => {         
-      let body = { ...this.props.item };      
+    this.setState({ tocada: !this.state.tocada }, () => {
+      let body = { ...this.props.item };
       this._recogerUsuarioSesion()
         .then(() => {
-          body.seleccionada = this.state.tocada;               
+          body.seleccionada = this.state.tocada;
           body.id_familiar = this.state.usuarioSesion.id;
           body.id_emocion_actividad = this.state.id_emocion_actividad;
-          
+
           tocarEmocion(body, this.state.token)
             .then(res => res.json())
             .then((res) => {
-              let that = this;              
-              this.handleResponse(res, () => {                  
-                if(res.respuesta.id > 0){                  
-                  that.setState({id_emocion_actividad:res.respuesta.id});                  
+              let that = this;
+              this.handleResponse(res, () => {
+                if (res.respuesta.id > 0) {
+                  that.setState({ id_emocion_actividad: res.respuesta.id });
                   //Alert.alert("Info ", "todo Ok ");    
                   this.animateIcon();
-                  this.setState({ loading: false });                                
-                }else{
-                  this.setState({ loading: false,tocada : !this.state.tocada });
-                  Alert.alert("Error ", "Ocurrió un error ");                                    
-                }                                            
+                  this.setState({ loading: false });
+                } else {
+                  this.setState({ loading: false, tocada: !this.state.tocada });
+                  Alert.alert("Error ", "Ocurrió un error ");
+                }
               });
             });
         }).catch((e) => {
-          this.setState({ loading: false,tocada : !this.state.tocada });
+          this.setState({ loading: false, tocada: !this.state.tocada });
           Alert.alert("Error", "Al cargar las actividades " + JSON.stringfy(e));
         });
     });
@@ -479,7 +508,7 @@ class BotonEmocion extends React.Component {
 
   render() {
     //const { tocada } = this.props.item.seleccionada;
-  
+
     return (
       <Button transparent
         onPress={this.handleOnPressEmocion}>
@@ -488,10 +517,10 @@ class BotonEmocion extends React.Component {
           type="FontAwesome"
           name={(this.state.tocada) ? this.props.item.icono_active : this.props.item.icono}
           size={100}
-          style={(this.state.tocada) ? this.props.item.estilo_active : this.props.item.estilo}          
+          style={(this.state.tocada) ? this.props.item.estilo_active : this.props.item.estilo}
         />
-         <ActivityIndicator size="small" color="#EC6050" animating={this.state.loading} />               
-        <Text>{this.props.item.nombre} </Text>         
+        <ActivityIndicator size="small" color="#EC6050" animating={this.state.loading} />
+        <Text>{this.props.item.nombre} </Text>
       </Button>
     );
   }
