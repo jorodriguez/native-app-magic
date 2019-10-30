@@ -125,6 +125,10 @@ export default class Principal extends React.Component {
               heading={<TabHeading><Icon name="md-cog" /><Text>Cuenta</Text></TabHeading>}>
               <CuentaFamiliar token={this.state.token} _salir={this.salir} />
             </Tab>
+            <Tab
+              heading={<TabHeading><Icon name="md-cog" /><Text>Tienda</Text></TabHeading>}>
+              <CuentaFamiliar token={this.state.token} _salir={this.salir} />
+            </Tab>
           </Tabs>
 
         </Container>

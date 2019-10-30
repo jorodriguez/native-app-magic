@@ -2,27 +2,25 @@
 import * as WebBrowser from 'expo-web-browser';
 import moment from "moment";
 import React from 'react';
-import Carousel from 'react-native-banner-carousel';
 import * as Animatable from 'react-native-animatable'
 
 import {
   Image,
   Platform,
   ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  SectionList,
+  StyleSheet,  
   FlatList,
-  View,
-  Span,
+  View,  
   RefreshControl,
-  AsyncStorage,
-  Component,
+  AsyncStorage,  
   Alert,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity,
+  TouchableHighlight,
+  Dimensions
 } from 'react-native';
 
-import { Container, Header, Content, Card, CardItem, Text, Left, Icon, Thumbnail, Right, Button, Body } from "native-base";
+import { Content, Card, CardItem, Text, Left, Icon, Right, Button, Body } from "native-base";
 
 import ConfettiCannon from 'react-native-confetti-cannon';
 
@@ -37,6 +35,14 @@ import PopupRelogin from './PopupRelogin';
 import { getActividades, tocarEmocion } from '../servicios/ActividadService';
 
 import { anunciarSesionCaducada } from '../servicios/AlertSesionTerminada';
+
+import { Banner } from './Banner';
+
+const imagenesBaner = [
+  "https://image.shutterstock.com/image-vector/casheless-paymentcashback-imege-handvector-illustration-600w-1515305807.jpg",
+  "https://image.shutterstock.com/image-vector/countryside-creator-theme-imega-set-600w-1089540569.jpg",
+  "https://image.shutterstock.com/image-illustration/woodworking-industry-infographics-set-lumberjack-600w-325082663.jpg"
+];
 
 //https://oblador.github.io/react-native-vector-icons/
 //https://www.bootdey.com/react-native-snippet/9/Login-form-ui-example
@@ -206,14 +212,11 @@ export default class HomeClass extends React.Component {
           <Image source={this.state.image != null ? this.state.image : null} />
 */}
           <View style={styles.getStartedContainer}>
-            {/*<DevelopmentModeNotice />*/}
-            {/*
-          <TokenExpiredMonitor label="Recargar Actividades"
-                                tokenExpired={JSON.stringify(this.state.tokenExpirado)}                                 
-                                />
-          */                   }
             <Text>Actividades de hoy</Text>
           </View>
+          
+          <Banner imagenes={imagenesBaner} > </Banner>
+
           <Content padder >
             <FlatList
               data={this.lista}
@@ -222,40 +225,11 @@ export default class HomeClass extends React.Component {
             />
           </Content>
         </ScrollView>
-
       </View>
     );
   }
 }
 
-const images = [
-  "https://image.shutterstock.com/image-vector/casheless-paymentcashback-imege-handvector-illustration-600w-1515305807.jpg",
-  "https://image.shutterstock.com/image-vector/countryside-creator-theme-imega-set-600w-1089540569.jpg",
-  "https://image.shutterstock.com/image-illustration/woodworking-industry-infographics-set-lumberjack-600w-325082663.jpg"
-];
-function Banner() {
-  return (
-    <View style={styles.container}>
-      <Carousel
-        autoplay
-        autoplayTimeout={5000}
-        loop
-        index={0}
-        pageSize={BannerWidth}
-      >
-        {images.map((image, index) => this.renderPage(image, index))}
-      </Carousel>
-    </View>
-  );
-}
-
-function renderPage(image, index) {
-  return (
-    <View key={index}>
-      <Image style={{ width: BannerWidth, height: BannerHeight }} source={{ uri: image }} />
-    </View>
-  );
-}
 
 class ItemActividad extends React.Component {
   constructor() {
