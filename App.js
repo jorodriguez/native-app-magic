@@ -12,9 +12,11 @@ import getTheme from './native-base-theme/components/index';
 import material from './native-base-theme/variables/material';
 
 import Principal from './navigation/Principal';
+import PrincipalTienda from './navigation/PrincipalTienda';
 import Login from './screens/Login';
+import HomeClass from './screens/HomeClass';
 import AuthLoadingScreen from './navigation/AuthLoadingScreen';
-
+//import Tienda from './screens/Tienda';
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 //Deshabilita la caja amarilla de warnings
@@ -22,7 +24,13 @@ console.disableYellowBox = true;
 
 const MainNavigator = createStackNavigator(
   {
-    Principal: Principal
+    Principal: Principal,    
+  }
+);
+
+const MainNavigatorTienda = createStackNavigator(
+  {
+    PrincipalTienda: PrincipalTienda,    
   }
 );
 
@@ -30,7 +38,8 @@ const AppContainer = createAppContainer(
   createSwitchNavigator({
     AuthLoading: AuthLoadingScreen,
     principal: MainNavigator,
-    Login: Login
+    Login: Login,
+    PrincipalTienda : MainNavigatorTienda,            
   },
     {
       initialRouteName: 'AuthLoading',
@@ -45,9 +54,7 @@ export default class App extends React.Component {
   }
 
   componentWillUnmount() {
-    //  this.removeNotificationDisplayedListener();
-    //this.removeNotificationListener();
-    //this.removeNotificationOpenedListener();
+   
   }
 
   async componentDidMount() {
@@ -101,7 +108,7 @@ export default class App extends React.Component {
   }
 }
 
-
+//hacer hook como el componente Banner
 const Loader = props => {
   const {
     loading,

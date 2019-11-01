@@ -3,16 +3,17 @@ import * as WebBrowser from 'expo-web-browser';
 import moment from "moment";
 import React from 'react';
 import * as Animatable from 'react-native-animatable'
+import { withNavigation } from 'react-navigation';
 
 import {
   Image,
   Platform,
   ScrollView,
-  StyleSheet,  
+  StyleSheet,
   FlatList,
-  View,  
+  View,
   RefreshControl,
-  AsyncStorage,  
+  AsyncStorage,
   Alert,
   ActivityIndicator,
   TouchableOpacity,
@@ -21,22 +22,16 @@ import {
 } from 'react-native';
 
 import { Content, Card, CardItem, Text, Left, Icon, Right, Button, Body } from "native-base";
-
 import ConfettiCannon from 'react-native-confetti-cannon';
-
 import firebase from 'react-native-firebase';
-
 import { SimpleAnimation } from 'react-native-simple-animations';
-
 import Loader from './Loader';
-
-import PopupRelogin from './PopupRelogin';
-
 import { getActividades, tocarEmocion } from '../servicios/ActividadService';
-
 import { anunciarSesionCaducada } from '../servicios/AlertSesionTerminada';
+import { Banner } from './components/Banner';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-import { Banner } from './Banner';
 
 const imagenesBaner = [
   "https://image.shutterstock.com/image-vector/casheless-paymentcashback-imege-handvector-illustration-600w-1515305807.jpg",
@@ -46,7 +41,8 @@ const imagenesBaner = [
 
 //https://oblador.github.io/react-native-vector-icons/
 //https://www.bootdey.com/react-native-snippet/9/Login-form-ui-example
-export default class HomeClass extends React.Component {
+class HomeClass extends React.Component {
+
   constructor(props) {
     super(props);
     this.lista = [];
@@ -192,6 +188,10 @@ export default class HomeClass extends React.Component {
     this.setState({ tokenExpirado: false });
   };
 
+  _actionOnPressBanner = () => {    
+    this.props.navigation.navigate('PrincipalTienda', {}, title = "tienda");
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -206,17 +206,13 @@ export default class HomeClass extends React.Component {
             />
           }
           contentContainerStyle={styles.contentContainer}>
-
-          {/*
-  <Text>ref {this.state.ref != null ? JSON.stringify(this.state.ref) : ''}</Text>
-          <Image source={this.state.image != null ? this.state.image : null} />
-*/}
           <View style={styles.getStartedContainer}>
             <Text>Actividades de hoy</Text>
           </View>
-          
-          <Banner imagenes={imagenesBaner} > </Banner>
 
+          <Banner imagenes={imagenesBaner} 
+                  actionOnPress={this._actionOnPressBanner}                   
+                  > </Banner>
           <Content padder >
             <FlatList
               data={this.lista}
@@ -664,3 +660,7 @@ const styles = StyleSheet.create({
     height: 44,
   },
 });
+
+//Se requiere moverse entre pantallas por lo tanto se empleo la solucion
+//https://reactnavigation.org/docs/en/connecting-navigation-prop.html
+export default withNavigation(HomeClass);
