@@ -1,4 +1,4 @@
-# Referenced at /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:42
+# Referenced at /home/joel/Documentos/proyecto_workspace/native-app-magic/android/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:42
 -keep class android.support.v4.app.CoreComponentFactory { <init>(); }
-# Referenced at /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:42
+# Referenced at /home/joel/Documentos/proyecto_workspace/native-app-magic/android/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:42
 -keep class com.magicintelligencecompany.magicintelligence.MainApplication { <init>(); }
