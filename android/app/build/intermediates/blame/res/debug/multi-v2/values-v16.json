@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/joel/Documentos/proyecto_workspace/native-app-magic/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
+            "outputFile": "/home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/home/joel/.gradle/caches/transforms-2/files-2.1/2744f518c8b7536d2597a6fdc90ea519/res/values-v16/values-v16.xml",
+                    "source": "/home/jorodriguez/.gradle/caches/transforms-2/files-2.1/dbf481542376b03a4f2b92d073f48f96/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/joel/.gradle/caches/transforms-2/files-2.1/5b155bb0df9aa7ebe1e73a3c9f42dd98/res/values-v16/values-v16.xml",
+                    "source": "/home/jorodriguez/.gradle/caches/transforms-2/files-2.1/a78186ac9d1c956eeaaf988b880c5dcb/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

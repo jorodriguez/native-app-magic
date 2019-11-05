@@ -20,7 +20,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 
 import Loader from './Loader';
 import PopupRelogin from './PopupRelogin';
-import { getProducto } from '../servicios/ProductoService';
+import { getProductos } from '../servicios/ProductoService';
 import { anunciarSesionCaducada } from '../servicios/AlertSesionTerminada';
 
 export default class Tienda extends React.Component {
@@ -35,7 +35,8 @@ export default class Tienda extends React.Component {
       item_seleccionado: null,
       selected: (new Map()),
       token: "",
-      usuarioSesion: null
+      usuarioSesion: null,
+      pagina:0
     }
   }
 
@@ -47,7 +48,7 @@ export default class Tienda extends React.Component {
   iniciar = () => {
     this._recogerUsuarioSesion()
       .then(() => {
-        this.getProductos();
+        this.cargarProductos();
       }).catch((e) => {
         Alert.alert("Error", "Al cargar actualizar " + e);
       });
@@ -62,22 +63,23 @@ export default class Tienda extends React.Component {
 
   _onRefresh = () => {
     this.setState({ refreshing: true });
-    this.getProductos();
+    this.cargarProductos();
   }
 
-  getProductos = () => {
-    /*this.setState({ loading: true });  
-    getProducto(this.state.usuarioSesion.id, this.state.token)
+  cargarProductos = () => {
+    this.setState({ loading: true });  
+    //this.state.usuarioSesion.id
+    getProductos(this.state.pagina, this.state.token)
       .then(res => res.json())
       .then(res => {
-        this.handleResponse(res, () => {
-          this.listaBalances = res.respuesta == null ? [] : res.respuesta;
-          if (this.listaBalances.length > 0) {
+        this.handleResponse(res, () => {           
+          this.listaProductos = res.respuesta == null ? [] : res.respuesta;          
+          if (this.listaProductos.length > 0) {
             this.setState({ loading: false });
             this.setState({ refreshing: false });
           }
         });
-      });*/
+      });
   };
 
   //maneja el token expirado
@@ -85,17 +87,38 @@ export default class Tienda extends React.Component {
     if (!response.estatus) {
       this.setState({ tokenExpirado: response.tokenExpirado });
       if (response.tokenExpirado) {
-        anunciarSesionCaducada(this.iniciarBalance);
+        anunciarSesionCaducada(this.iniciar);
       } else {
         Alert.alert("Operación Fallida", "Sucedió un detalle al procesar la operación. ");
       }
     } else {
       handlerProcess();
     }
+    handlerProcess();
     this.setState({ loading: false, refreshing: false });
   }
 
   _keyExtractor = (item, index) => index.toString();
+
+   /*<ItemProducto
+      id={item.id}
+      selected={!!this.state.selected.get(item.id)}
+      item={item}      
+    />*/
+  _renderItem = ({ item, index }) => (
+    <Grid>
+         <Col style={{ backgroundColor: '#635DB7', height: 200 }}>           
+            <Image style={styles.bgImage} source={{ uri: "https://magicintelligence.com/wp-content/uploads/revslider/kiddie/little-boy.png" }} />
+            <Text>{item.nombre}</Text>
+            <Text>${item.precio}</Text>
+         </Col>
+          <Col style={{ backgroundColor: '#00CE9F', height: 200 }}>
+            <Image style={styles.bgImage} source={{ uri: "https://magicintelligence.com/wp-content/uploads/revslider/kiddie/little-boy.png" }} />
+            <Text>{item.nombre}</Text>
+            <Text>${item.precio}</Text>
+          </Col>
+    </Grid>  
+  );
 
   render() {
     return (
@@ -112,23 +135,16 @@ export default class Tienda extends React.Component {
             />
           }>
           <View>
-            <Content style={styles.container}>
-              <Grid>
+            <Content style={styles.container}>              
+            <FlatList
+              data={this.listaProductos}
+              renderItem={this._renderItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+              {/*<Grid>
                 <Col style={{ backgroundColor: '#635DB7', height: 200 }}></Col>
                 <Col style={{ backgroundColor: '#00CE9F', height: 200 }}></Col>
-              </Grid>
-              <Grid>
-                <Col style={{ backgroundColor: 'pink', height: 200 }}></Col>
-                <Col style={{ backgroundColor: 'red', height: 200 }}></Col>
-              </Grid>
-              <Grid>
-                <Col style={{ backgroundColor: '#63AAB7', height: 200 }}></Col>
-                <Col style={{ backgroundColor: '#00AA9F', height: 200 }}></Col>
-              </Grid>
-              <Grid>
-                <Col style={{ backgroundColor: '#63DDB7', height: 200 }}></Col>
-                <Col style={{ backgroundColor: '#00DD9F', height: 200 }}></Col>
-              </Grid>
+              </Grid>*/}             
             </Content>
           </View>
         </ScrollView>
