@@ -8,7 +8,8 @@ const URL = {
     ACTIVIDADES : BASE+'/actividades/',
     CLIENTE: BASE+'/cliente/',
     BALANCE : BASE+'/balance_familiar_alumno/',
-    EMOCION : BASE+'/emocion'
+    EMOCION : BASE+'/emocion',
+    PRODUCTOS: BASE+'/productos/' 
 }
 
 

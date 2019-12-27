@@ -113,7 +113,7 @@ export default class Login extends React.Component {
                         <TextInput style={styles.inputs}
                             placeholder="Clave"
                             secureTextEntry={this.state.secureTextEntry}
-                            autoCorrect={false}
+                            autoCorrect={false}                            
                             underlineColorAndroid='transparent'                            
                             onChangeText={(password) => this.setState({ password })} />
                         <Icon style={styles.icon}

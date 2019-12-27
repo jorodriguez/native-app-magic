@@ -36,9 +36,7 @@ export function cerrarSesion(usuario,token) {
     .catch((e) => {
       Alert.alert("Error", "Existe un detalle con la mensajería en este dispositivo, por favor informe este aviso al equipo de Soporte.");
     });
-
 }
-
 
 export const setUsuarioSesion = async (usuario) => {
     if (usuario != null && usuario != undefined) {

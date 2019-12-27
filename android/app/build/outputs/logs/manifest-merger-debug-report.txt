@@ -5,7 +5,7 @@ INJECTED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native
 INJECTED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/main/AndroidManifest.xml:1:1-43:12
 INJECTED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/main/AndroidManifest.xml:1:1-43:12
 MERGED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/main/AndroidManifest.xml:1:1-43:12
-MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-23:12
+MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-19:12
 MERGED from [com.android.support:multidex:1.0.3] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/7d93df28a715590c970c18b3ae1de89c/AndroidManifest.xml:17:1-22:12
 MERGED from [:@react-native-community_async-storage] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/@react-native-community/async-storage/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-gesture-handler] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
@@ -115,8 +115,8 @@ INJECTED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native
 		INJECTED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/debug/AndroidManifest.xml
 uses-permission#android.permission.INTERNET
 ADDED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/main/AndroidManifest.xml:6:5-67
-MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-67
-MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-67
+MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-67
+MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-67
 MERGED from [com.google.firebase:firebase-perf:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/09bc687c303bcfefe01d02d7911979b6/AndroidManifest.xml:22:5-67
 MERGED from [com.google.firebase:firebase-perf:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/09bc687c303bcfefe01d02d7911979b6/AndroidManifest.xml:22:5-67
 MERGED from [com.google.firebase:firebase-storage:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/4f659625cee129c29691bab7906e43b5/AndroidManifest.xml:27:5-67
@@ -169,8 +169,6 @@ application
 ADDED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/main/AndroidManifest.xml:11:5-41:19
 MERGED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/main/AndroidManifest.xml:11:5-41:19
 MERGED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/main/AndroidManifest.xml:11:5-41:19
-MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-21:19
-MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-21:19
 MERGED from [com.facebook.react:react-native:0.59.9] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/eaa9db2817dc5944bcd388e61cedd987/AndroidManifest.xml:11:5-20
 MERGED from [com.facebook.react:react-native:0.59.9] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/eaa9db2817dc5944bcd388e61cedd987/AndroidManifest.xml:11:5-20
 MERGED from [com.google.firebase:firebase-core:16.0.9] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/c883b9271e2fbb4030dbb83a53a851c6/AndroidManifest.xml:7:5-20
@@ -333,8 +331,8 @@ uses-sdk
 INJECTED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/main/AndroidManifest.xml
 INJECTED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/main/AndroidManifest.xml
-MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
-MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-13:41
+MERGED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-13:41
 MERGED from [com.android.support:multidex:1.0.3] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/7d93df28a715590c970c18b3ae1de89c/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:multidex:1.0.3] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/7d93df28a715590c970c18b3ae1de89c/AndroidManifest.xml:20:5-43
 MERGED from [:@react-native-community_async-storage] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/@react-native-community/async-storage/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
@@ -516,7 +514,7 @@ INJECTED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native
 		INJECTED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/main/AndroidManifest.xml
 		INJECTED from /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/src/debug/AndroidManifest.xml
 uses-permission#android.permission.WAKE_LOCK
-ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-68
+ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-68
 MERGED from [com.google.android.gms:play-services-measurement-api:16.5.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/19c8e23082a52ff9c84029bbd4536f49/AndroidManifest.xml:24:5-68
 MERGED from [com.google.android.gms:play-services-measurement-api:16.5.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/19c8e23082a52ff9c84029bbd4536f49/AndroidManifest.xml:24:5-68
 MERGED from [com.google.firebase:firebase-iid:18.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/e7a5d67431b8b3b344ab6f814f3e9615/AndroidManifest.xml:24:5-68
@@ -528,9 +526,9 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] /home
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/a089ff61088cd2fcb33270897cd4ea60/AndroidManifest.xml:25:5-68
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/a089ff61088cd2fcb33270897cd4ea60/AndroidManifest.xml:25:5-68
 	android:name
-		ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:22-65
+		ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:22-65
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-79
+ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:5-79
 MERGED from [com.google.firebase:firebase-storage:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/4f659625cee129c29691bab7906e43b5/AndroidManifest.xml:26:5-79
 MERGED from [com.google.firebase:firebase-storage:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/4f659625cee129c29691bab7906e43b5/AndroidManifest.xml:26:5-79
 MERGED from [com.google.firebase:firebase-database:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/ea99fe2e86829793838c5fe45c8c149e/AndroidManifest.xml:25:5-79
@@ -552,11 +550,25 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] /h
 MERGED from [io.grpc:grpc-android:1.21.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/e29dace1d8ce11aae3aaafb60217f37d/AndroidManifest.xml:11:5-79
 MERGED from [io.grpc:grpc-android:1.21.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/e29dace1d8ce11aae3aaafb60217f37d/AndroidManifest.xml:11:5-79
 	android:name
-		ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:22-76
+		ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:22-76
+activity#com.google.firebase.auth.internal.FederatedSignInActivity
+ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:24:9-31:50
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:26:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:28:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:27:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:29:13-102
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:30:13-72
+	tools:replace
+		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:31:13-47
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:25:13-85
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:9-20:19
-MERGED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:33:9-39:19
-MERGED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:33:9-39:19
+ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:33:9-39:19
 MERGED from [com.google.firebase:firebase-perf:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/09bc687c303bcfefe01d02d7911979b6/AndroidManifest.xml:34:9-38:19
 MERGED from [com.google.firebase:firebase-perf:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/09bc687c303bcfefe01d02d7911979b6/AndroidManifest.xml:34:9-38:19
 MERGED from [com.google.firebase:firebase-storage:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/4f659625cee129c29691bab7906e43b5/AndroidManifest.xml:30:9-34:19
@@ -580,29 +592,7 @@ MERGED from [com.google.firebase:firebase-abt:17.1.1] /home/jorodriguez/.gradle/
 	android:exported
 		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:35:13-37
 	android:name
-		ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:18-89
-meta-data#com.google.firebase.components:io.invertase.firebase.ReactNativeFirebaseAppRegistrar
-ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:85
-	android:value
-		ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-82
-	android:name
-		ADDED from [:react-native-firebase] /home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-116
-activity#com.google.firebase.auth.internal.FederatedSignInActivity
-ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:24:9-31:50
-	android:excludeFromRecents
-		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:26:13-46
-	android:launchMode
-		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:28:13-44
-	android:exported
-		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:27:13-36
-	android:permission
-		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:29:13-102
-	android:theme
-		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:30:13-72
-	tools:replace
-		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:31:13-47
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:25:13-85
+		ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:34:13-84
 meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
 ADDED from [com.google.firebase:firebase-auth:17.0.0] /home/jorodriguez/.gradle/caches/transforms-2/files-2.1/399a6bd5d32f9ca86c5f20748cfcd01f/AndroidManifest.xml:36:13-38:85
 	android:value

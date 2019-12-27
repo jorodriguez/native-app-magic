@@ -18,8 +18,6 @@ import { cerrarSesion } from '../servicios/LoginService';
 
 import { updateToken } from '../servicios/TokenService';
 
-
-
 export default class Principal extends React.Component {
 
   constructor(props) {
@@ -84,8 +82,7 @@ export default class Principal extends React.Component {
     updateToken(this.state.usuarioSesion.id, this.state.token, { "token": tokenMensajeria })
       .then(res => res.json())
       .then(res => {
-        console.log("Se actualizo el token del usuario");
-        //Alert.alert("Error", "Se actualizo el token");
+        console.log("Se actualizo el token del usuario");       
       })
       .catch((e) => {
         Alert.alert("Error", "Existe un detalle con la mensajería en este dispositivo, por favor informe este aviso al equipo de Soporte.");
@@ -124,9 +121,8 @@ export default class Principal extends React.Component {
             <Tab
               heading={<TabHeading><Icon name="md-cog" /><Text>Cuenta</Text></TabHeading>}>
               <CuentaFamiliar token={this.state.token} _salir={this.salir} />
-            </Tab>
+            </Tab>           
           </Tabs>
-
         </Container>
       </Root>
     );

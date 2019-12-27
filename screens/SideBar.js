@@ -55,6 +55,7 @@ export default class CuentaFamiliar extends React.Component {
   componentDidMount() {
     this.recogerUsuarioSesion();
   }
+  
   recogerUsuarioSesion = async () => {
     const user = await AsyncStorage.getItem('usuario');
     const token = await AsyncStorage.getItem('userToken');
