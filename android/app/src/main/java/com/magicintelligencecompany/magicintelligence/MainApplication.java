@@ -3,6 +3,8 @@ package com.magicintelligencecompany.magicintelligence;
 import android.support.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import io.invertase.firebase.RNFirebasePackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -43,6 +45,8 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+            new VectorIconsPackage(),
+            new ModuleRegistryAdapter(),
             new RNFirebasePackage(),
             new AsyncStoragePackage(),
             new RNGestureHandlerPackage(),

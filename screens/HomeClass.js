@@ -209,10 +209,10 @@ class HomeClass extends React.Component {
           <View style={styles.getStartedContainer}>
             <Text>Actividades de hoy</Text>
           </View>
-
+          {/*
           <Banner imagenes={imagenesBaner} 
                   actionOnPress={this._actionOnPressBanner}                   
-                  > </Banner>
+          > </Banner>*/}
           <Content padder >
             <FlatList
               data={this.lista}

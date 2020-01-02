@@ -1,4 +1,8 @@
 rootProject.name = 'MagicIntelligence'
+include ':react-native-vector-icons'
+project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
+include ':@unimodules_react-native-adapter'
+project(':@unimodules_react-native-adapter').projectDir = new File(rootProject.projectDir, '../node_modules/@unimodules/react-native-adapter/android')
 include ':react-native-firebase'
 project(':react-native-firebase').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-firebase/android')
 include ':@react-native-community_async-storage'

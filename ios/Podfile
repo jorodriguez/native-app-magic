@@ -5,6 +5,7 @@ target 'MagicIntelligence' do
   # Pods for MagicIntelligence
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
+  rn_path = '../node_modules/react-native'
 
   # Required by RNFirebase
   pod 'Firebase/Core', '~> 6.3.0'
@@ -21,11 +22,44 @@ target 'MagicIntelligence' do
   pod 'Firebase/Storage', '~> 6.3.0'
   pod 'Firebase/Performance', '~> 6.3.0'
   pod 'Fabric', '~> 1.10.2'
-  pod 'Crashlytics', '~> 3.13.2'
+  #pod 'Crashlytics', '~> 3.13.2'
+
+#  pod 'React', :path => '../node_modules/react-native'
+#  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
+  pod 'yoga', path: "#{rn_path}/ReactCommon/yoga"
+  pod 'React', path: rn_path, subspecs: [
+    'Core',
+    'CxxBridge',
+    'DevSupport',
+    'RCTActionSheet',
+    'RCTAnimation',
+    'RCTGeolocation',
+    'RCTImage',
+    'RCTLinkingIOS',
+    'RCTNetwork',
+    'RCTSettings',
+    'RCTText',
+    'RCTVibration',
+    'RCTWebSocket',
+  ]
+  pod 'Folly', :podspec => "#{rn_path}/third-party-podspecs/Folly.podspec"
+
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
+  #pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if target.name == "React"
+        target.remove_from_project
+      end
+    end
+  end
+
 
 end
 
@@ -41,3 +75,5 @@ target 'MagicIntelligence-tvOS' do
   end
 
 end
+
+
