@@ -89,7 +89,7 @@ export default class Login extends React.Component {
 
         return (
             <View style={styles.container}>                
-                <Loader loading={this.state.loading} />                
+                {/*<Loader loading={this.state.loading} /> */}
                 <View>
                     <Image style={styles.bgImage} source={{ uri: "https://magicintelligence.com/wp-content/uploads/revslider/kiddie/little-boy.png" }} />
                 </View>
@@ -125,7 +125,7 @@ export default class Login extends React.Component {
                     </View>
                     <TouchableOpacity style={[styles.buttonContainer, styles.loginButton]} onPress={() => this.onClickListener('login')}>
                         <Text style={styles.loginText}>Entrar</Text>
-                        {/*<ActivityIndicator animating={this.state.loading} />*/}
+                        <ActivityIndicator animating={this.state.loading} />
                     </TouchableOpacity>
 
                     {/*

@@ -79,6 +79,7 @@ export default class Principal extends React.Component {
   };
 
   modificarToken = (tokenMensajeria) => {
+    Alert.alert("toke mod","modificacion de token firebase "+tokenMensajeria);
     updateToken(this.state.usuarioSesion.id, this.state.token, { "token": tokenMensajeria })
       .then(res => res.json())
       .then(res => {

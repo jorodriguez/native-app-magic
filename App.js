@@ -66,14 +66,14 @@ export default class App extends React.Component {
     //this.setState({permiso_notificacion:enabled});
     //    this.setState({log:this.state.log+" Enable Messa "+enabled});
 
-    /*    const fcmToken = await firebase.messaging().getToken();
+        const fcmToken = await firebase.messaging().getToken();
         if (fcmToken) {
           // user has a device token
           this.setState({ log: this.state.log + "TOKEN " + fcmToken });
         } else {
           // user doesn't have a device token yet
           this.setState({ log: this.state.log + "NO TOKEN " });
-        }*/
+        }
 
     /*if (enabled) {
       // user has permissions

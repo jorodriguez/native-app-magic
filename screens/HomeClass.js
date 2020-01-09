@@ -78,10 +78,13 @@ class HomeClass extends React.Component {
 
     this.iniciarListaActividades();
     moment.locale('es');
+    Alert.alert("ms","Iniciando conf");
     firebase.messaging().hasPermission().then(hasPermission => {
       if (hasPermission) {
+        Alert.alert("ms","Tiene permis "+hasPermission);
         this.managedNotificaction();
       } else {
+        Alert.alert("ms","PEDIR PERSMISO ");
         firebase.messaging().requestPermission().then(() => {
           this.managedNotificaction();
         }).catch(error => {
@@ -118,6 +121,7 @@ class HomeClass extends React.Component {
 
     this.notificationListener = firebase.notifications().onNotification((notification) => {
       // si llego una notificacion          
+      Alert.alert("Noifica","nueva notificacion");
       this.setState({ contador_sin_revisar: this.state.contador_sin_revisar + 1 });
     });
   }
