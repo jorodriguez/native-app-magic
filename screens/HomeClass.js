@@ -121,8 +121,9 @@ class HomeClass extends React.Component {
 
     this.notificationListener = firebase.notifications().onNotification((notification) => {
       // si llego una notificacion          
-      Alert.alert("Noifica","nueva notificacion");
+     // Alert.alert("Noifica","nueva notificacion ");
       this.setState({ contador_sin_revisar: this.state.contador_sin_revisar + 1 });
+      this.getActividades();
     });
   }
 

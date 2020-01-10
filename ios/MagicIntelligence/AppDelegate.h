@@ -7,8 +7,11 @@
 
 #import <React/RCTBridgeDelegate.h>
 #import <UIKit/UIKit.h>
+@import UserNotifications;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate>
+//@interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate>
+// change this with extra parameter
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UNUserNotificationCenterDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 
