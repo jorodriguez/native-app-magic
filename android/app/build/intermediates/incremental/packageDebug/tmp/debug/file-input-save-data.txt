@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Nov 04 18:04:56 CST 2019
+#Tue Jan 14 16:22:09 CST 2020
 56.path=lib/arm64-v8a/libjsc.so
 5.base=/home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/build/intermediates/transforms/mergeJniLibs/debug/0
 42.base=/home/jorodriguez/Documentos/Personal/heroku/proyecto/react-native-firebase/native-app-magic/android/app/build/intermediates/transforms/mergeJniLibs/debug/0

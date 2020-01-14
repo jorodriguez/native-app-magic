@@ -337,6 +337,7 @@ com/google/protobuf/ExperimentalApi.class
 com/magicintelligencecompany/magicintelligence/BuildConfig.class
 com/magicintelligencecompany/magicintelligence/MainApplication$1.class
 com/magicintelligencecompany/magicintelligence/MainApplication.class
+com/oblador/vectoricons/VectorIconsPackage.class
 com/reactnativecommunity/asyncstorage/AsyncStoragePackage.class
 com/swmansion/gesturehandler/react/RNGestureHandlerPackage.class
 io/fabric/sdk/android/services/concurrency/DependsOn.class
